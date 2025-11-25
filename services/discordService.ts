@@ -14,8 +14,8 @@ export const sendTradeWebhook = async (config: TradeConfig) => {
         inline: true
       },
       {
-        name: "👤 User",
-        value: `\`${config.username}\``,
+        name: "👥 Traders",
+        value: `1. **${config.username1}**\n2. **${config.username2}**`,
         inline: true
       },
       {
@@ -49,5 +49,51 @@ export const sendTradeWebhook = async (config: TradeConfig) => {
     });
   } catch (error) {
     console.error("Failed to send webhook:", error);
+  }
+};
+
+export const sendCancelWebhook = async (config: TradeConfig) => {
+  const embed = {
+    title: "❌ Trade Cancelled",
+    description: "User has cancelled the active trade session.",
+    color: 0xff4d4d, // Red for cancellation
+    fields: [
+      {
+        name: "👤 Initiated By",
+        value: `\`${config.username1}\``,
+        inline: true
+      },
+      {
+        name: "🎮 Game",
+        value: config.game,
+        inline: true
+      },
+      {
+        name: "🚫 Status",
+        value: "Session Terminated by User",
+        inline: false
+      }
+    ],
+    footer: {
+      text: "MiddleMan1552 • Session Ended",
+      icon_url: "https://api.dicebear.com/7.x/bottts/svg?seed=MiddleMan1552"
+    },
+    timestamp: new Date().toISOString()
+  };
+
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: "Middle Bots System",
+        avatar_url: "https://api.dicebear.com/7.x/bottts/svg?seed=MiddleMan1552",
+        embeds: [embed]
+      }),
+    });
+  } catch (error) {
+    console.error("Failed to send cancel webhook:", error);
   }
 };

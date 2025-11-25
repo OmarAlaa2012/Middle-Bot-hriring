@@ -15,7 +15,7 @@ export const generateBotProtocol = async (config: TradeConfig): Promise<string> 
         Generate a short, robotic, and secure "Initialization Protocol" message.
         It should:
         1. Acknowledge the specific trade details briefly.
-        2. Instruct the user (Username: ${config.username}) to add "MiddleMan1552" as a friend immediately.
+        2. Instruct BOTH users (Trader 1: ${config.username1}, Trader 2: ${config.username2}) to add "MiddleMan1552" as a friend immediately.
         3. State that you are joining the server now.
         4. Include a fake hexadecimal "Secure Trade Hash" at the end.
         

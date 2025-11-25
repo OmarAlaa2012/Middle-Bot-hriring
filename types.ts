@@ -8,7 +8,8 @@ export enum AppStep {
 export interface TradeConfig {
   game: string;
   description: string;
-  username: string;
+  username1: string;
+  username2: string;
   tradeTime: string;
 }
 
